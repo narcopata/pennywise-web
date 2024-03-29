@@ -1,6 +1,7 @@
 import { FormEventHandler, useCallback, useState } from "react";
 import * as styles from "./styles.css";
 import { authServices } from "~app/services/auth";
+import { useNavigate } from "@tanstack/react-router";
 
 const FORM_FIELDS = Object.freeze({
 	EMAIL: "email",
@@ -13,10 +14,12 @@ export const SignUp: React.FunctionComponent = () => {
 		Partial<Record<(typeof FORM_FIELDS)[keyof typeof FORM_FIELDS], string>>
 	>({});
 
+	const navigate = useNavigate();
+
 	const handleSumbit: FormEventHandler<HTMLFormElement> = useCallback(
 		async (event) => {
 			event.preventDefault();
-	
+
 			try {
 				if (
 					!formData.email ||
@@ -26,21 +29,24 @@ export const SignUp: React.FunctionComponent = () => {
 				) {
 					throw new Error(JSON.stringify(formData, null, 2));
 				}
-	
+
 				await authServices.signUp({
 					email: formData.email,
 					password: formData.password,
 				});
 
-				console.log("aqui")
+				navigate({
+					to: "/access/signin",
+				});
 			} catch (error) {
 				console.error(
 					"An error has occurred when attempting to create an account...",
 				);
 				console.error(error);
 			}
-		}, [formData]
-	)
+		},
+		[formData, navigate],
+	);
 
 	return (
 		<div className={styles.container}>
@@ -56,8 +62,6 @@ export const SignUp: React.FunctionComponent = () => {
 					placeholder="E-mail"
 					type="email"
 					onChange={(e) => {
-						console.log(e.target.value)
-
 						setFormData((prev) => ({
 							...prev,
 							[FORM_FIELDS.EMAIL]: e.target?.value,
