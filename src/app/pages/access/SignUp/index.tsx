@@ -16,6 +16,7 @@ export const SignUp: React.FunctionComponent = () => {
 
 	const navigate = useNavigate();
 
+	// eslint-disable-next-line @typescript-eslint/no-misused-promises
 	const handleSumbit: FormEventHandler<HTMLFormElement> = useCallback(
 		async (event) => {
 			event.preventDefault();
@@ -35,14 +36,11 @@ export const SignUp: React.FunctionComponent = () => {
 					password: formData.password,
 				});
 
-				navigate({
+				void navigate({
 					to: "/access/signin",
 				});
-			} catch (error) {
-				console.error(
-					"An error has occurred when attempting to create an account...",
-				);
-				console.error(error);
+			} catch {
+				// Tratativa de erros
 			}
 		},
 		[formData, navigate],
