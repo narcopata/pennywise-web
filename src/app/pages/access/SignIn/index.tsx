@@ -1,21 +1,8 @@
-import { FormEventHandler, useState } from "react";
 import * as styles from "./styles.css";
-
-const FORM_FIELDS = Object.freeze({
-	EMAIL: "email",
-	PASSWORD: "password",
-});
+import { FORM_FIELDS, useSignIn } from "./use-sign-in.controller";
 
 export const SignIn: React.FunctionComponent = () => {
-	const [formData, setFormData] = useState<
-		Partial<Record<(typeof FORM_FIELDS)[keyof typeof FORM_FIELDS], string>>
-	>({});
-
-	const handleSumbit: FormEventHandler<HTMLFormElement> = (data) => {
-		data.preventDefault();
-
-		console.table(formData);
-	};
+	const { handleSumbit, setFormData } = useSignIn();
 
 	return (
 		<div className={styles.container}>
@@ -50,7 +37,7 @@ export const SignIn: React.FunctionComponent = () => {
 					onChange={(e) => {
 						setFormData((prev) => ({
 							...prev,
-							[FORM_FIELDS.PASSWORD]: e.currentTarget?.value,
+							[FORM_FIELDS.PASSWORD]: e.target?.value,
 						}));
 					}}
 					className={styles.input}
