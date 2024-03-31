@@ -1,23 +1,14 @@
-import { AuthContext, AuthContextType } from "./context";
-import { Context, useContextSelector } from "use-context-selector";
+import { useContext } from "react";
+import { AuthContext } from "./context";
 
-type SelectorFn<
-	Args,
-	Selected extends Args | Args[keyof Args] = Args | Args[keyof Args],
-> = (value: Args) => Selected;
-
-export const useAuthContext = <
-	Selector extends SelectorFn<AuthContextType> = (
-		value: AuthContextType,
-	) => AuthContextType,
->(
-	selector?: Selector,
-): ReturnType<Selector> => {
-	const context = useContextSelector(
-		AuthContext as Context<AuthContextType>,
-		selector ??
-			(((ctx) => ctx) as SelectorFn<AuthContextType, ReturnType<Selector>>),
+export const useAuthContext = () => {
+	const context = useContext(
+		AuthContext
 	);
 
-	return context as ReturnType<Selector>;
+	if (!context) {
+		throw new Error("Uso inválido do contexto.");
+	}
+
+	return context;
 };

@@ -1,13 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { ProviderProps, useCallback, useEffect, useMemo, useState } from "react";
 import { AuthContext, AuthContextType } from "./context";
-import { Context } from "use-context-selector";
 import { LOCAL_STORAGE_KEYS } from "~app/config/localStorageKeys";
 import { useQuery } from "@tanstack/react-query";
 import { companiesService } from "~app/services/companies";
 import { QUERY_KEYS } from "~app/config/queryKeys";
 
-export const AuthContextProvider: Context<AuthContextType | null>["Provider"] =
+export const AuthContextProvider: React.FC<ProviderProps<AuthContextType | null>> =
 	({ children }) => {
 		const [signedIn, setSignedIn] = useState(
 			() => !!localStorage.getItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN),

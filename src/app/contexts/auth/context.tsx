@@ -1,4 +1,4 @@
-import { createContext } from "use-context-selector";
+import { createContext } from "react";
 import { Company } from "~app/entities/Company";
 
 export type AuthContextType = {
