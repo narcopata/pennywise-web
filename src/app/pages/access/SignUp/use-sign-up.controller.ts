@@ -9,7 +9,7 @@ export const FORM_FIELDS = Object.freeze({
 });
 
 export const useSignUpController = () => {
-  const [formData, setFormData] = useState<
+	const [formData, setFormData] = useState<
 		Partial<Record<(typeof FORM_FIELDS)[keyof typeof FORM_FIELDS], string>>
 	>({});
 
@@ -45,8 +45,8 @@ export const useSignUpController = () => {
 		[formData, navigate],
 	);
 
-  return {
-    handleSumbit,
-    setFormData
-  }
-}
+	return {
+		handleSumbit,
+		setFormData,
+	};
+};
