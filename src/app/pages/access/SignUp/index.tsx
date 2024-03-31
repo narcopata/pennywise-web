@@ -1,7 +1,5 @@
-import { FormEventHandler, useCallback, useState } from "react";
 import * as styles from "./styles.css";
-import { authServices } from "~app/services/auth";
-import { useNavigate } from "@tanstack/react-router";
+import { useSignUpController } from "./use-sign-up.controller";
 
 const FORM_FIELDS = Object.freeze({
 	EMAIL: "email",
@@ -10,43 +8,7 @@ const FORM_FIELDS = Object.freeze({
 });
 
 export const SignUp: React.FunctionComponent = () => {
-	const [formData, setFormData] = useState<
-		Partial<Record<(typeof FORM_FIELDS)[keyof typeof FORM_FIELDS], string>>
-	>({});
-
-	const navigate = useNavigate();
-
-	const handleSumbit: FormEventHandler<HTMLFormElement> = useCallback(
-		async (event) => {
-			event.preventDefault();
-
-			try {
-				if (
-					!formData.email ||
-					!formData.password ||
-					!formData.repassword ||
-					formData.password !== formData.repassword
-				) {
-					throw new Error(JSON.stringify(formData, null, 2));
-				}
-
-				await authServices.signUp({
-					email: formData.email,
-					password: formData.password,
-				});
-
-				navigate({
-					to: "/access/signin",
-				});
-			} catch (error) {
-				console.error(
-					"An error has occurred when attempting to create an account...",
-				);
-				console.error(error);
-			}
-		},
-		[formData, navigate],
-	);
+	const { handleSumbit, setFormData } = useSignUpController();
 
 	return (
 		<div className={styles.container}>

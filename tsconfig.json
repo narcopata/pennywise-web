@@ -21,7 +21,8 @@
     "noFallthroughCasesInSwitch": true,
 
     "paths": {
-      "~app/*": ["./src/app/*"]
+      "~app/*": ["./src/app/*"],
+      "_root/*": ["./src/_root/*"]
     }
   },
   "include": ["src"],
