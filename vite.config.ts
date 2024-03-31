@@ -9,6 +9,7 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			"~app": "/src/app",
+			"_root": "/src/_root"
 		},
 	},
 });
