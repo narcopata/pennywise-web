@@ -27,7 +27,7 @@
     "use-context-selector": "^1.4.4"
   },
   "devDependencies": {
-    "@biomejs/biome": "latest",
+    "@biomejs/biome": "1.6.4",
     "@types/bun": "latest",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
