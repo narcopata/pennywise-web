@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/charts": "^2.0.3",
+    "@ant-design/icons": "^5.3.6",
     "@tanstack/react-query": "^5.28.9",
     "@tanstack/react-router": "^1.21.0",
     "@tanstack/router-devtools": "^1.22.0",
@@ -17,6 +19,7 @@
     "@vanilla-extract/css": "^1.14.1",
     "@vanilla-extract/vite-plugin": "^4.0.6",
     "antd": "^5.15.3",
+    "date-fns": "^3.6.0",
     "eslint-plugin-react": "^7.34.1",
     "install": "^0.13.0",
     "ky": "^1.2.2",
