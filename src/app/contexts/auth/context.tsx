@@ -1,9 +1,9 @@
 import { createContext } from "react";
-import { Company } from "~app/entities/Company";
+import { CompaniesMineResponse } from "~app/services/companies/mine";
 
 export type AuthContextType = {
 	signedIn: boolean;
-	companies: Company[];
+	companies: CompaniesMineResponse;
 	signIn: (accessToken: string) => void;
 	signOut: () => void;
 };
